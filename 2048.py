@@ -13,6 +13,12 @@ class Game:
         self.make_GUI()
         self.start_game()
 
+        
+        self.window.bind("<Left>", self.left)
+        self.window.bind("<Right>", self.right)
+        self.window.bind("<Up>", self.up)
+        self.window.bind("<Down>", self.down)   
+
     def make_GUI(self):
         #make grid
         self.cells = []
@@ -170,6 +176,46 @@ class Game:
                 font = c.GAME_OVER_FONT
             ).pack()
 
+    #Arrow-Press Functions
+
+    def left(self, event):
+        self.stack()
+        self.combine()
+        self.stack()
+        self.add_new_tile()
+        self.update_GUI()
+        self.game_over()
+
+    def right(self, event):
+        self.reverse()
+        self.stack()
+        self.combine()
+        self.stack()
+        self.reverse()
+        self.add_new_tile()
+        self.update_GUI()
+        self.game_over()
+
+    def up(self, event):
+        self.transpose()
+        self.stack()
+        self.combine()
+        self.transpose()
+        self.add_new_tile()
+        self.update_GUI()
+        self.game_over()
+
+    def down(self, event):
+        self.transpose()
+        self.reverse()
+        self.stack()
+        self.combine()
+        self.stack()
+        self.reverse()
+        self.transpose()
+        self.add_new_tile()
+        self.update_GUI()
+        self.game_over()
 
     def run(self):
         self.window.mainloop()
