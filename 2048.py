@@ -131,8 +131,27 @@ class Game:
                     )
         self.score_label.configure(text = self.score)
 
+    # Check if any_moves
+
+    def horizontal_move_exists(self):
+        for i in range(4):
+            for j in range(3):
+                if self.matrix[i][j] == self.matrix[i][j + 1]:
+                    return True
+        return False
+        
+    def vertical_move_exists(self):
+        for i in range(3):
+            for j in range(4):
+                if self.matrix[i][j] == self.matrix[i + 1][j]:
+                    return True
+        return False
+
+
+
     def run(self):
         self.window.mainloop()
+
 
 
 if __name__ == "__main__":
